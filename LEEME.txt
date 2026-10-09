@@ -1,11 +1,62 @@
 GALAXIA 3D PARA ELYAN
 
-1. Abre la carpeta con VS Code y usa Live Server, o ejecuta: python -m http.server 49180 --bind 127.0.0.1
-2. Visita http://127.0.0.1:49180
-3. Three.js 0.160.1 y OrbitControls están incluidos en vendor/three; la página no necesita un CDN. Publica también esa carpeta y conserva su licencia MIT.
-4. La canción está en musica/musica.mp3. Se reproduce en bucle al tocar «toca para iniciar»; el botón ♫ permite pausar y reanudar. El navegador requiere ese primer toque para permitir el audio.
-5. La bienvenida muestra flores/inicio.png y oculta la galaxia hasta pulsar «toca para iniciar». La escena utiliza flores/flor-1.png, flor-2.png, flor-3.png, flor-4.png y flor-5.png, conservando sus fondos originales.
-6. Para publicar, sube index.html, galaxy.js y las carpetas flores, musica y vendor a GitHub Pages o Netlify, conservando los nombres y las rutas.
+CÓMO VER EL PROYECTO
+Desde esta carpeta ejecuta:
+  python -m http.server 49180 --bind 127.0.0.1
+Abre http://127.0.0.1:49180 y toca la bienvenida.
+También puedes usar Live Server en VS Code.
 
-CONTROLES: arrastrar para rotar, rueda/pellizco para zoom, botones +/- para zoom, doble clic para reiniciar.
-La cámara modifica la perspectiva y la posición aparente, pero sprites de frases y flores compensan el tamaño visual.
+QUÉ PUEDES EDITAR
+
+index.html
+  - Frase e imagen de la bienvenida.
+  - Título de la galaxia.
+  - Título, párrafos y firma de la carta.
+  - Archivo de música.
+  Cada sección tiene un comentario que indica dónde empieza.
+
+config.js
+  - PHRASES: lista de frases románticas, una por línea.
+  - phraseCount: cuántas frases aparecen; se repiten si hace falta.
+  - flowerImages: nombres de las cinco imágenes de flores.
+  - flowerCount: cantidad total de flores.
+  - flowerOpacity: transparencia; 0 es invisible y 1 es opaca.
+  - particles: cantidades de estrellas y partículas de la galaxia.
+  - introParticles: cantidad de estrellas del inicio.
+  - phraseSize: tamaño de las frases de la galaxia.
+
+styles.css
+  - Colores del inicio: variables --intro-dark, --intro-purple y --intro-pink.
+  - Tamaños de letra, espacios, contorno de la imagen y diseño de la carta.
+  - Secciones numeradas para encontrar cada parte fácilmente.
+
+intro.js
+  - Crea las pequeñas estrellas decorativas de la bienvenida.
+
+galaxy.js
+  - Cámara, partículas 3D, flores, frases, movimiento, música y carta.
+  - Usa los valores de config.js.
+
+black-hole.js
+  - Efecto visual del agujero negro (shader).
+  - No necesitas editarlo para cambiar textos, fotos o colores del inicio.
+
+ARCHIVOS MULTIMEDIA
+  flores/inicio.png: imagen de bienvenida.
+  flores/flor-1.png a flor-5.png: flores de la galaxia.
+  musica/musica.mp3: canción en bucle, que empieza al tocar la bienvenida.
+  fonts/: tipografía Great Vibes y su licencia OFL.
+  vendor/three/: Three.js y OrbitControls, con su licencia MIT.
+
+CONTROLES
+  Arrastrar: girar la galaxia.
+  Rueda o pellizco: acercar y alejar.
+  Doble clic en la galaxia: restablecer la cámara.
+  Sobre: abrir la carta. ×, Escape o tocar fuera: cerrarla.
+  No hay botones de zoom, inicio ni control de música.
+  Frases y flores conservan su opacidad; pueden salir del encuadre al girar.
+
+PUBLICACIÓN
+Sube index.html, styles.css, config.js, intro.js, galaxy.js, black-hole.js
+junto con las carpetas flores, musica, fonts y vendor. Conserva nombres,
+rutas y licencias. La fuente y Three.js son locales; no necesitan un CDN.

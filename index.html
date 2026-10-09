@@ -1,25 +1,85 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Un universo para Elyan 💜</title><style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#020008;color:#fff;font-family:Georgia,serif}#scene{position:fixed;inset:0;touch-action:none}canvas{display:block}.hud{position:fixed;z-index:3;pointer-events:none;text-align:center;left:0;right:0;top:22px;text-shadow:0 0 24px #b650ff}.hud h1{font-size:clamp(19px,4vw,36px);margin:0;color:#f4d9ff}.hud p{font:12px system-ui;margin:8px;color:#dfb8fa}.actions{position:fixed;bottom:22px;right:20px;display:flex;gap:9px;z-index:5}.zoom{position:fixed;bottom:22px;left:20px;display:flex;gap:8px;z-index:5}button{cursor:pointer;border:1px solid #bb79ed88;color:white;background:#2c1049cc;border-radius:30px;padding:12px 15px;font-size:18px;backdrop-filter:blur(10px)}button:hover{background:#673392}.hint{position:fixed;z-index:3;bottom:80px;left:0;right:0;text-align:center;font:12px system-ui;color:#cba9de;pointer-events:none}.veil{position:fixed;inset:0;z-index:10;background:#080315eb;display:grid;place-items:center;padding:20px}.hidden{display:none!important}.letter{position:fixed;inset:0;z-index:12;background:#030008d9;display:grid;place-items:center;padding:18px}.paper{position:relative;width:min(95vw,550px);max-height:88vh;overflow:auto;padding:28px;background:#f9efff;color:#472a57;border-radius:18px;box-shadow:0 0 75px #8c45cf77}.paper h2{text-align:center}.paper p{line-height:1.8}.paper .close{position:absolute;right:10px;top:10px;color:#5b2975;background:transparent;border:0}.notice{position:fixed;z-index:6;top:105px;left:50%;transform:translateX(-50%);font:12px system-ui;color:#ffe7ff;text-align:center;pointer-events:none}@media(max-width:600px){.hint{font-size:10px}.hud{top:15px}.paper{padding:23px}}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Un universo para Elyan 💜</title>
+    <link
+      rel="preload"
+      href="fonts/GreatVibes-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="importmap">
+      { "imports": { "three": "./vendor/three/three.module.js" } }
+    </script>
+  </head>
+  <body>
+    <!-- INICIO: cambia aquí la frase, la imagen y el texto para entrar. -->
+    <section class="intro" id="intro" aria-labelledby="intro-title">
+      <div
+        class="intro-particles"
+        id="intro-particles"
+        aria-hidden="true"
+      ></div>
+      <div class="intro-content">
+        <h2 id="intro-title">Para Ti Mi Princesa 💜</h2>
+        <img
+          class="intro-image"
+          src="flores/inicio.png"
+          alt="Un ramo de flores moradas para ti"
+        />
+        <button id="start" class="intro-trigger">Toca para iniciar</button>
+      </div>
+    </section>
 
-#universe{visibility:hidden;opacity:0;transition:opacity 1.4s ease}
-body.started #universe{visibility:visible;opacity:1}
-.veil{background:#080310;background-image:radial-gradient(ellipse at 50% 40%,#251036 0%,#080310 70%);overflow:auto}
+    <!-- GALAXIA: el contenido 3D se crea en galaxy.js. -->
+    <main id="universe" inert>
+      <div id="scene"></div>
+      <header class="hud">
+        <h1>Feliz Día de las Flores Moradas 💜</h1>
+        <p>Un universo solo para ti Amor</p>
+      </header>
+      <p class="notice" id="notice" role="status"></p>
+      <p class="hint"></p>
+      <div class="actions">
+        <button id="letterBtn" class="letter-button" aria-label="Abrir carta">
+          💌
+        </button>
+      </div>
+    </main>
 
+    <!-- CARTA: edita libremente el título, los párrafos y la firma. -->
+    <dialog class="letter" id="letter" aria-labelledby="letter-title">
+      <article class="paper">
+        <button class="close" id="close" aria-label="Cerrar carta">×</button>
+        <h2 id="letter-title">Para mi Elyan 💜</h2>
+        <p>
+          Amor, hoy quise regalarte algo distinto. No son flores que puedas
+          sostener en tus manos, pero sí un pequeño universo que hice pensando
+          en ti.
+        </p>
+        <p>
+          Ojalá cada flor morada te recuerde lo especial que eres para mí,
+          incluso en esos días en los que no encontramos muchas palabras para
+          decir lo que sentimos.
+        </p>
+        <p>
+          Me encanta compartir contigo esos momentos sencillos que terminan
+          convirtiéndose en mis favoritos. Gracias por ser tú, princesa.
+        </p>
+        <p>Te amo mucho. 💜</p>
+        <small>Con mucho cariño, tu amor.</small>
+      </article>
+    </dialog>
 
-
-
-button:focus-visible{outline:2px solid #f3d4ff;outline-offset:5px}
-@media(prefers-reduced-motion:reduce){#universe{transition:none}}
-
-.veil{background:#080310;cursor:pointer}
-.panel{width:min(92vw,620px);text-align:center;padding:28px 16px;display:flex;flex-direction:column;align-items:center;gap:26px}
-.panel h2{color:#f4e8ff;font-weight:normal;font-size:clamp(24px,5vw,36px);margin:0;text-shadow:0 0 24px #b583df40}
-.intro-image{display:block;width:min(76vw,380px);max-height:56vh;object-fit:contain;filter:drop-shadow(1px 0 1px #ffffff38) drop-shadow(-1px 0 1px #ffffff38) drop-shadow(0 0 9px #ffffff18)}
-.intro-trigger,.intro-trigger:hover{border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;color:#fff;font:16px Georgia,serif;letter-spacing:.12em;padding:14px 20px;margin:0}
-@media(max-height:520px){.panel{gap:10px;padding:10px}.intro-image{max-height:48vh}.panel h2{font-size:24px}}
-</style></head><body><main id="universe" inert><div id="scene"></div><div class="hud"><h1>Feliz Día de las Flores Moradas 💜</h1><p>Un universo solo para ti, Elyan</p></div><div class="notice" id="notice"></div><div class="hint">Arrastra para girar · Rueda o pellizca para acercarte · Doble clic para reiniciar</div><div class="zoom"><button id="out" aria-label="Alejar">−</button><button id="reset" aria-label="Restablecer">⌂</button><button id="in" aria-label="Acercar">+</button></div><div class="actions"><button id="music" aria-label="Música">♫</button><button id="letterBtn" aria-label="Carta">💌</button></div></main><div class="veil" id="intro"><div class="panel"><h2>Para ti, mi princesa 💜</h2><img class="intro-image" src="flores/inicio.png" alt="Un ramo de flores moradas para ti"><button id="start" class="intro-trigger">toca para iniciar</button></div></div><div class="letter hidden" id="letter"><div class="paper"><button class="close" id="close">✕</button><h2>Para mi Elyan 💜</h2><p>Amor, hoy quise regalarte algo distinto. No son flores que puedas sostener en tus manos, pero sí un pequeño universo que hice pensando en ti.</p><p>Ojalá cada flor morada te recuerde lo especial que eres para mí, incluso en esos días en los que no encontramos muchas palabras para decir lo que sentimos.</p><p>Me encanta compartir contigo esos momentos sencillos que terminan convirtiéndose en mis favoritos. Gracias por ser tú, princesa.</p><p>Te amo mucho. 💜</p><small>Con mucho cariño, tu amor.</small></div></div><audio id="song" loop preload="metadata" src="musica/musica.mp3"></audio>
-<script type="importmap">
-{"imports":{"three":"./vendor/three/three.module.js"}}
-</script>
-<script type="module" src="./galaxy.js"></script>
-</body></html>
+    <!-- MÚSICA: cambia este archivo para elegir otra canción. -->
+    <audio id="song" loop preload="metadata" src="musica/musica.mp3"></audio>
+    <script type="module" src="galaxy.js"></script>
+  </body>
+</html>
