@@ -1,0 +1,11 @@
+GALAXIA 3D PARA ELYAN
+
+1. Abre la carpeta con VS Code y usa Live Server, o ejecuta: python -m http.server 8000
+2. Visita http://localhost:8000
+3. Requiere conexión a Internet para cargar Three.js desde CDN.
+4. Añade un archivo musica.mp3 en esta misma carpeta para activar la música.
+5. Las flores incluidas son imágenes SVG de muestra; sustituye los archivos flores/flor-1.svg a flor-4.svg por imágenes PNG/WebP transparentes realistas y actualiza las extensiones en index.html.
+6. Para publicar, sube todos los archivos a GitHub Pages o Netlify.
+
+CONTROLES: arrastrar para rotar, rueda/pellizco para zoom, botones +/- para zoom, doble clic para reiniciar.
+La cámara modifica la perspectiva y la posición aparente, pero sprites de frases y flores compensan el tamaño visual.
