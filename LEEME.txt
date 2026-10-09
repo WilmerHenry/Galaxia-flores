@@ -1,11 +1,11 @@
 GALAXIA 3D PARA ELYAN
 
-1. Abre la carpeta con VS Code y usa Live Server, o ejecuta: python -m http.server 8000
-2. Visita http://localhost:8000
+1. Abre la carpeta con VS Code y usa Live Server, o ejecuta: python -m http.server 49180 --bind 127.0.0.1
+2. Visita http://127.0.0.1:49180
 3. Three.js 0.160.1 y OrbitControls están incluidos en vendor/three; la página no necesita un CDN. Publica también esa carpeta y conserva su licencia MIT.
-4. La canción está en musica/musica.mp3. Se reproduce en bucle al tocar «Toca para descubrir»; el botón ♫ permite pausar y reanudar. El navegador requiere ese primer toque para permitir el audio.
-5. La escena utiliza los cuatro JPEG de flores/: images.jpeg, images (1).jpeg, images (2).jpeg e images (3).jpeg. Los JPEG conservan su fondo original.
-6. Para publicar, sube index.html y las carpetas flores, musica y vendor a GitHub Pages o Netlify, conservando los nombres y las rutas.
+4. La canción está en musica/musica.mp3. Se reproduce en bucle al tocar «toca para iniciar»; el botón ♫ permite pausar y reanudar. El navegador requiere ese primer toque para permitir el audio.
+5. La bienvenida muestra flores/inicio.png y oculta la galaxia hasta pulsar «toca para iniciar». La escena utiliza flores/flor-1.png, flor-2.png, flor-3.png, flor-4.png y flor-5.png, conservando sus fondos originales.
+6. Para publicar, sube index.html, galaxy.js y las carpetas flores, musica y vendor a GitHub Pages o Netlify, conservando los nombres y las rutas.
 
 CONTROLES: arrastrar para rotar, rueda/pellizco para zoom, botones +/- para zoom, doble clic para reiniciar.
 La cámara modifica la perspectiva y la posición aparente, pero sprites de frases y flores compensan el tamaño visual.
